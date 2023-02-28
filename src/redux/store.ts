@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
+import sort from './sortSlice'
+import update from './updateSlice'
+
 import { todosApi } from './todosApi'
 
 export const store = configureStore({
 	reducer: {
+		sort,
+		update,
 		[todosApi.reducerPath]: todosApi.reducer,
 	},
 	middleware: getDefaultMiddlware =>
