@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { ITodo } from './../models/ITodo'
@@ -7,24 +8,37 @@ export const todosApi = createApi({
 	reducerPath: 'todosApi',
 	tagTypes: ['Todos'],
 
-	baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3010/' }),
+	baseQuery: fetchBaseQuery({
+		baseUrl: 'http://localhost:8080/',
+		prepareHeaders: (headers, { getState }) => {
+			// const token = (getState() as RootState).auth.token
+			const token = window.localStorage.getItem('token')
+
+			if (token) {
+				headers.set('authorization', `Bearer ${token}`)
+			}
+
+			return headers
+		},
+	}),
 
 	endpoints: build => ({
 		getTodos: build.query<ITodo[], ISort>({
 			query: ({ limit, currentPage, completed }) => ({
-				url: `/todos`,
+				url: `/postsId`,
 				params: {
 					_limit: limit,
 					_page: currentPage,
 					completed_like: completed,
 				},
 			}),
+
 			providesTags: ['Todos'],
 		}),
 
 		getLengthTodos: build.query<ITodo[], string>({
 			query: completed => ({
-				url: `/todos`,
+				url: `/lengthId`,
 				params: {
 					completed_like: completed,
 				},
@@ -33,10 +47,10 @@ export const todosApi = createApi({
 		}),
 
 		getTodoById: build.query<ITodo[], number>({
-			query: id => ({
-				url: `/todos/${id}`,
+			query: _id => ({
+				url: `/posts/${_id}`,
 				params: {
-					id,
+					_id,
 				},
 			}),
 			providesTags: ['Todos'],
@@ -44,7 +58,7 @@ export const todosApi = createApi({
 
 		addTodo: build.mutation<ITodo, ITodo>({
 			query: body => ({
-				url: `todos`,
+				url: `posts`,
 				method: 'POST',
 				body,
 			}),
@@ -53,8 +67,19 @@ export const todosApi = createApi({
 
 		updateTodo: build.mutation<ITodo, ITodo>({
 			query: body => ({
-				url: `todos/${body.id}`,
+				// url: `posts/`,
+				url: `posts/${body._id}`,
 				method: 'PUT',
+				body,
+			}),
+
+			invalidatesTags: ['Todos'],
+		}),
+
+		exampleUpdateTodo: build.mutation<ITodo, ITodo>({
+			query: body => ({
+				url: `posts/${body._id}`,
+				method: 'PATCH',
 				body,
 			}),
 
@@ -63,7 +88,7 @@ export const todosApi = createApi({
 
 		deleteTodo: build.mutation<ITodo, ITodo>({
 			query: body => ({
-				url: `todos/${body.id}`,
+				url: `posts/${body._id}`,
 				method: 'DELETE',
 			}),
 			invalidatesTags: ['Todos'],

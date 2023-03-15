@@ -6,59 +6,9 @@
       "id": 1
     },
     {
-      "name": "помыть посуду",
-      "completed": true,
+      "name": "1984",
+      "completed": false,
       "id": 2
-    },
-    {
-      "name": "погулять",
-      "completed": false,
-      "id": 3
-    },
-    {
-      "name": "покодить",
-      "completed": true,
-      "id": 4
-    },
-    {
-      "name": "тум пидум",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "name": "трам пам пам ",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "name": "чето еще",
-      "completed": false,
-      "id": 7
-    },
-    {
-      "name": "что то невероятно важное",
-      "completed": false,
-      "id": 8
-    },
-    {
-      "name": "очень важное",
-      "completed": false,
-      "id": 9
-    },
-    {
-      "name": "как всегда",
-      "completed": false,
-      "id": 10
-    },
-    {
-      "name": "пурум пурум",
-      "completed": false,
-      "id": 11
-    },
-    {
-      "name": "PiU pIu Piu",
-      "completed": true,
-      "id": 12
     }
   ]
 }

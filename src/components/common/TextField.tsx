@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { FC } from 'react'
 
 import { ITodo } from '../../models/ITodo'
@@ -6,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { selectUpdate, setNewTodo, setEdit } from '../../redux/updateSlice'
 
 import { useAddTodoMutation, useUpdateTodoMutation } from '../../redux'
+import { selectIsAuth } from '../../redux/authSlice'
 
 interface TextFieldProps {
 	inputRef: React.RefObject<HTMLInputElement>

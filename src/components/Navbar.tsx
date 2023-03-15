@@ -2,7 +2,7 @@ import DarkMode from './common/DarkMode'
 
 const Navbar = () => {
 	return (
-		<nav className='-navbar top-0 left-0 w-full h-20 z-10'>
+		<nav className='-navbar top-0 left-0 w-full h-20 bg-orange-400 dark:bg-zinc-900 z-10'>
 			<hr className='border-none h-0.5 bg-zinc-900 dark:bg-pink-400' />
 			<div className='flex items-center justify-center'>
 				<div>
