@@ -1,26 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './store'
 
-import { IUpdate } from './../models/IUpdate'
+import { IAuth } from './../models/IAuth'
 
-const initialState = {
-	data: null,
-	token: '',
-	status: 'loading',
+const initialState: IAuth = {
+	isAuth: false,
 }
 
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setToken: (state, action: PayloadAction<string>) => {
-			state.token = action.payload
+		setIsAuth: (state, action: PayloadAction<boolean>) => {
+			state.isAuth = action.payload
 		},
 	},
 })
 
 export const selectIsAuth = (state: RootState) => state.auth
 
-export const { setToken } = authSlice.actions
+export const { setIsAuth } = authSlice.actions
 
 export default authSlice.reducer

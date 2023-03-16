@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { FC } from 'react'
 
 import { ITodo } from '../../models/ITodo'
@@ -7,7 +6,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { selectUpdate, setNewTodo, setEdit } from '../../redux/updateSlice'
 
 import { useAddTodoMutation, useUpdateTodoMutation } from '../../redux'
-import { selectIsAuth } from '../../redux/authSlice'
 
 interface TextFieldProps {
 	inputRef: React.RefObject<HTMLInputElement>
@@ -17,22 +15,22 @@ const TextField: FC<TextFieldProps> = ({ inputRef }) => {
 	const dispatch = useAppDispatch()
 	const { newTodo, edit, todoObj } = useAppSelector(selectUpdate)
 
-	const [addProduct] = useAddTodoMutation()
-	const [updateProductCompleted] = useUpdateTodoMutation()
+	const [addTodo] = useAddTodoMutation()
+	const [updateTodoCompleted] = useUpdateTodoMutation()
 
-	const handleAddProduct = async () => {
+	const handleAddTodo = async () => {
 		if (edit) {
-			await updateProductCompleted({
+			await updateTodoCompleted({
 				...todoObj,
-				name: newTodo,
+				title: newTodo,
 				completed: false,
-			} as ITodo).unwrap()
+			} as ITodo)
 			dispatch(setEdit(false))
 			dispatch(setNewTodo(''))
 		}
 
 		if (newTodo && !edit) {
-			await addProduct({ name: newTodo, completed: false } as ITodo).unwrap()
+			await addTodo({ title: newTodo, completed: false } as ITodo)
 			dispatch(setNewTodo(''))
 			if (inputRef.current) {
 				inputRef.current.focus()
@@ -50,7 +48,7 @@ const TextField: FC<TextFieldProps> = ({ inputRef }) => {
 						placeholder='Enter todo'
 						type='text'
 						value={newTodo}
-						onKeyDown={e => e.key === 'Enter' && handleAddProduct()}
+						onKeyDown={e => e.key === 'Enter' && handleAddTodo()}
 						onChange={e => dispatch(setNewTodo(e.target.value))}
 					/>
 				</div>
@@ -58,7 +56,7 @@ const TextField: FC<TextFieldProps> = ({ inputRef }) => {
 			<div className='w-10/12 rounded-2xl mx-auto p-2 bg-orange-400 dark:bg-zinc-900'>
 				<button
 					className='w-full h-8 rounded-2xl bg-zinc-900 dark:bg-pink-400 font-bold text-lg text-orange-400 dark:text-zinc-900 '
-					onClick={handleAddProduct}
+					onClick={handleAddTodo}
 				>
 					Add
 				</button>

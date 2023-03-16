@@ -1,6 +1,8 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
+
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { selectSort, setCurrentPage } from '../redux/sortSlice'
+
 import { useGetTodosQuery } from '../redux'
 
 import TodoItem from './TodoItem'
@@ -13,27 +15,18 @@ const TodosList: FC<TodosListProps> = ({ inputRef }) => {
 	const dispatch = useAppDispatch()
 
 	const { currentPage, limit, completed } = useAppSelector(selectSort)
-	const data = useGetTodosQuery({
-		limit,
-		currentPage,
-		completed,
-	})
-	console.log(data)
+
 	const { data: todos = [], isLoading } = useGetTodosQuery({
 		limit,
 		currentPage,
 		completed,
 	})
 
-	console.log('Длинна', todos.length)
-	console.log('currentPage', currentPage)
-
-	const minusPage = () => {
-		dispatch(setCurrentPage(currentPage - 1))
-	}
-	// if (todos.length === 0) {
-	// 	minusPage()
-	// }
+	useEffect(() => {
+		if (currentPage > 1 && todos.length === 0) {
+			dispatch(setCurrentPage(currentPage - 1))
+		}
+	}, [todos.length])
 
 	if (isLoading)
 		return (

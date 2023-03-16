@@ -15,8 +15,9 @@ const Wrapper = () => {
 			<Navbar />
 			<Routes>
 				<Route path='/' element={<Login />} />
-				<Route path='/:userName' element={<Main />} />
+				<Route path='/:userNickName' element={<Main />} />
 			</Routes>
+
 			<Pagination />
 			<Footer />
 		</div>

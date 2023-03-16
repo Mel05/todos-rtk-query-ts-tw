@@ -20,19 +20,19 @@ interface TodoItemProps {
 const TodoItem: FC<TodoItemProps> = ({ todo, inputRef }) => {
 	const dispatch = useAppDispatch()
 
-	const [updateProductCompleted] = useUpdateTodoMutation()
+	const [updateTodoCompleted] = useUpdateTodoMutation()
 	const [deleteTodo] = useDeleteTodoMutation()
 
-	const toggleCompleted = async (todo: ITodo) => {
-		await updateProductCompleted({
+	const toggleCompletedTodo = async (todo: ITodo) => {
+		await updateTodoCompleted({
 			...todo,
 			completed: !todo.completed,
-		}).unwrap()
+		})
 	}
 
-	const handleUpdate = (todo: ITodo) => {
+	const handleUpdateTodo = (todo: ITodo) => {
 		inputRef.current?.focus()
-		dispatch(setNewTodo(todo.name))
+		dispatch(setNewTodo(todo.title))
 		dispatch(setEdit(true))
 		dispatch(setTodoObj(todo))
 	}
@@ -40,7 +40,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, inputRef }) => {
 	const handleDeleteTodo = async (event: React.MouseEvent) => {
 		event.stopPropagation()
 
-		await deleteTodo(todo).unwrap()
+		await deleteTodo(todo)
 	}
 
 	return (
@@ -48,14 +48,14 @@ const TodoItem: FC<TodoItemProps> = ({ todo, inputRef }) => {
 			<span className='flex items-center justify-between border rounded-2xl mb-3 p-3 bg-orange-300  border-orange-400 hover:border-zinc-900 dark:bg-zinc-800 dark:border-zinc-900 dark:hover:border-pink-400 '>
 				<span
 					className='w-full flex cursor-pointer pr-3 mr-2 overflow-hidden'
-					onClick={() => toggleCompleted(todo)}
+					onClick={() => toggleCompletedTodo(todo)}
 				>
 					<Check isCompleted={todo.completed} />
 
 					<span
 						className={`select-none ${todo.completed ? 'line-through' : ''}`}
 					>
-						{todo.name}
+						{todo.title}
 					</span>
 				</span>
 
@@ -63,7 +63,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, inputRef }) => {
 					<CiEdit
 						size={22}
 						className='mr-3 text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-pink-400  transition-colors ease-in-out duration-300 cursor-pointer'
-						onClick={() => handleUpdate(todo)}
+						onClick={() => handleUpdateTodo(todo)}
 					/>
 
 					<BsTrash

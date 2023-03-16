@@ -6,14 +6,20 @@ import { BiChevronDown } from 'react-icons/bi'
 import { useGetLengthTodosQuery } from '../../redux'
 import { useAppSelector, useAppDispatch } from '../../hooks/redux'
 import { selectSort, setCurrentPage } from '../../redux/sortSlice'
+import { selectIsAuth } from '../../redux/authSlice'
 
 const Pagination: FC = () => {
 	const dispatch = useAppDispatch()
 
-	const { currentPage, limit, completed } = useAppSelector(selectSort)
-	const { data } = useGetLengthTodosQuery(completed)
+	const { isAuth } = useAppSelector(selectIsAuth)
 
-	const totalNumTodos = data?.length || 1
+	const { currentPage, limit, completed } = useAppSelector(selectSort)
+
+	const { data: todosLength = [] } = useGetLengthTodosQuery(completed, {
+		skip: !isAuth,
+	})
+
+	const totalNumTodos = todosLength?.length || 1
 	const todosOnPage = Number(limit) || 1
 
 	const handlePageChange = (page: number) => {

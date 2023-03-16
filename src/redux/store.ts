@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import sort from './sortSlice'
 import update from './updateSlice'
 import auth from './authSlice'

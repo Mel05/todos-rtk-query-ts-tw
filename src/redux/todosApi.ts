@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { ITodo } from './../models/ITodo'
@@ -25,7 +24,7 @@ export const todosApi = createApi({
 	endpoints: build => ({
 		getTodos: build.query<ITodo[], ISort>({
 			query: ({ limit, currentPage, completed }) => ({
-				url: `/postsId`,
+				url: `/todosId`,
 				params: {
 					_limit: limit,
 					_page: currentPage,
@@ -46,19 +45,9 @@ export const todosApi = createApi({
 			providesTags: ['Todos'],
 		}),
 
-		getTodoById: build.query<ITodo[], number>({
-			query: _id => ({
-				url: `/posts/${_id}`,
-				params: {
-					_id,
-				},
-			}),
-			providesTags: ['Todos'],
-		}),
-
 		addTodo: build.mutation<ITodo, ITodo>({
 			query: body => ({
-				url: `posts`,
+				url: `todo`,
 				method: 'POST',
 				body,
 			}),
@@ -67,19 +56,8 @@ export const todosApi = createApi({
 
 		updateTodo: build.mutation<ITodo, ITodo>({
 			query: body => ({
-				// url: `posts/`,
-				url: `posts/${body._id}`,
+				url: `todo/${body._id}`,
 				method: 'PUT',
-				body,
-			}),
-
-			invalidatesTags: ['Todos'],
-		}),
-
-		exampleUpdateTodo: build.mutation<ITodo, ITodo>({
-			query: body => ({
-				url: `posts/${body._id}`,
-				method: 'PATCH',
 				body,
 			}),
 
@@ -88,19 +66,28 @@ export const todosApi = createApi({
 
 		deleteTodo: build.mutation<ITodo, ITodo>({
 			query: body => ({
-				url: `posts/${body._id}`,
+				url: `todo/${body._id}`,
 				method: 'DELETE',
 			}),
 			invalidatesTags: ['Todos'],
 		}),
+
+		// getTodoById: build.query<ITodo[], number>({
+		// 	query: _id => ({
+		// 		url: `/posts/${_id}`,
+		// 		params: {
+		// 			_id,
+		// 		},
+		// 	}),
+		// 	providesTags: ['Todos'],
+		// }),
 	}),
 })
 
 export const {
 	useGetTodosQuery,
 	useGetLengthTodosQuery,
-	useGetTodoByIdQuery,
 	useAddTodoMutation,
-	useDeleteTodoMutation,
 	useUpdateTodoMutation,
+	useDeleteTodoMutation,
 } = todosApi

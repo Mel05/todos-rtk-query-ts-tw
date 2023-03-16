@@ -21,7 +21,7 @@ const SelectorField: FC = () => {
 		},
 		{
 			value: 'false',
-			label: 'НЕ completed',
+			label: 'НЕ_completed',
 		},
 	]
 
