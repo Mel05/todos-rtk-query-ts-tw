@@ -7,7 +7,9 @@ export const userApi = createApi({
 	tagTypes: ['User'],
 
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:8080/',
+		baseUrl:
+			'https://todos-server-supermadmel.onrender.com' ||
+			'http://localhost:8080/',
 		prepareHeaders: headers => {
 			const token = window.localStorage.getItem('token')
 
