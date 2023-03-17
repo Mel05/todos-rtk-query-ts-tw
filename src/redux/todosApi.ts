@@ -8,9 +8,7 @@ export const todosApi = createApi({
 	tagTypes: ['Todos'],
 
 	baseQuery: fetchBaseQuery({
-		baseUrl:
-			'https://todos-server-supermadmel.onrender.com' ||
-			'http://localhost:8080/',
+		baseUrl: 'https://todos-server-supermadmel.onrender.com',
 		prepareHeaders: (headers, { getState }) => {
 			// const token = (getState() as RootState).auth.token
 			const token = window.localStorage.getItem('token')
