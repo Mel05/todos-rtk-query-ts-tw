@@ -33,7 +33,7 @@ const TodosList: FC<TodosListProps> = ({ inputRef }) => {
 
 	return (
 		<div className=''>
-			<ul className='-todosList px-5 flex-auto mx-auto'>
+			<ul className='-todosList px-5 flex-auto mx-auto '>
 				{todos?.map(todo => (
 					<TodoItem key={todo._id} todo={todo} inputRef={inputRef} />
 				))}

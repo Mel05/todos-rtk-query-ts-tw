@@ -47,7 +47,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, inputRef }) => {
 
 	return (
 		<li className='w-full'>
-			<span className='flex items-center justify-between border rounded-2xl h-14 my-2 p-3 bg-orange-300  border-orange-400 hover:border-zinc-900 dark:bg-zinc-800 dark:border-zinc-900 dark:hover:border-pink-400 overflow-hidden'>
+			<span className='flex items-center justify-between border rounded-2xl h-14 my-2 p-3 bg-orange-300  border-orange-400 hover:border-zinc-900 dark:bg-zinc-800 dark:border-zinc-900 dark:hover:border-pink-400'>
 				{isDeleteLoading ? (
 					<Loader />
 				) : (
@@ -56,13 +56,18 @@ const TodoItem: FC<TodoItemProps> = ({ todo, inputRef }) => {
 							<Loader />
 						) : (
 							<>
-								<Check isCompleted={todo.completed} />
 								<span
-									className='w-full flex cursor-pointer pr-3 mr-2'
+									className='cursor-pointer'
+									onClick={() => toggleCompletedTodo(todo)}
+								>
+									<Check isCompleted={todo.completed} />
+								</span>
+								<span
+									className='w-full flex cursor-pointer pr-3 mr-2 overflow-hidden'
 									onClick={() => toggleCompletedTodo(todo)}
 								>
 									<span
-										className={`object-cover select-none ${
+										className={`select-none ${
 											todo.completed ? 'line-through' : ''
 										}`}
 									>
