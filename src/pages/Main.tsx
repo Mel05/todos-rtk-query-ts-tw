@@ -17,7 +17,7 @@ const Main = () => {
 	}, [])
 
 	return (
-		<div className='-main w-full mx-auto mt-5 px-10 z-10 md:max-w-[800px] md:w-3/4 md:mt-20 md:px-28'>
+		<div className='-main w-full flex flex-col mt-8 mb-auto mx-auto px-3 z-10 md:max-w-2xl'>
 			<TextField inputRef={inputRef} />
 
 			<SelectorField />

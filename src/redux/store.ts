@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import sort from './sortSlice'
 import update from './updateSlice'
 import auth from './authSlice'
+import themeMode from './themeMode'
 
 import { todosApi } from './todosApi'
 import { userApi } from './userApi'
@@ -12,6 +13,7 @@ export const store = configureStore({
 		sort,
 		update,
 		auth,
+		themeMode,
 		[todosApi.reducerPath]: todosApi.reducer,
 		[userApi.reducerPath]: userApi.reducer,
 	},

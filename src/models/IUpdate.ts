@@ -1,5 +1,5 @@
 export interface IUpdate {
-	newTodo: string
+	inputValue: string
 	edit: boolean
 	todoObj: object
 }

@@ -6,6 +6,7 @@ export const userApi = createApi({
 	reducerPath: 'user',
 	tagTypes: ['User'],
 
+	// http://localhost:8080 //'https://todos-server-supermadmel.onrender.com'
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'https://todos-server-supermadmel.onrender.com',
 		prepareHeaders: headers => {

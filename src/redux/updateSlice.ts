@@ -4,7 +4,7 @@ import { RootState } from './store'
 import { IUpdate } from './../models/IUpdate'
 
 const initialState: IUpdate = {
-	newTodo: '',
+	inputValue: '',
 	edit: false,
 	todoObj: {},
 }
@@ -13,8 +13,8 @@ export const updateSlice = createSlice({
 	name: 'update',
 	initialState,
 	reducers: {
-		setNewTodo: (state, action: PayloadAction<string>) => {
-			state.newTodo = action.payload
+		setInputValue: (state, action: PayloadAction<string>) => {
+			state.inputValue = action.payload
 		},
 
 		setEdit: (state, action: PayloadAction<boolean>) => {
@@ -29,6 +29,6 @@ export const updateSlice = createSlice({
 
 export const selectUpdate = (state: RootState) => state.update
 
-export const { setNewTodo, setEdit, setTodoObj } = updateSlice.actions
+export const { setInputValue, setEdit, setTodoObj } = updateSlice.actions
 
 export default updateSlice.reducer

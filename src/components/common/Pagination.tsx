@@ -7,6 +7,7 @@ import { useGetLengthTodosQuery } from '../../redux'
 import { useAppSelector, useAppDispatch } from '../../hooks/redux'
 import { selectSort, setCurrentPage } from '../../redux/sortSlice'
 import { selectIsAuth } from '../../redux/authSlice'
+import Loader from './Loader'
 
 const Pagination: FC = () => {
 	const dispatch = useAppDispatch()
@@ -32,7 +33,7 @@ const Pagination: FC = () => {
 	if (numOfPages === 1 || numOfPages === 0) return null
 
 	return (
-		<ul className='-pagination w-1/3 h-7 flex justify-between mb-4 mx-auto z-10'>
+		<ul className='-pagination w-2/4 h-7 flex justify-between mb-2 mx-auto z-10'>
 			<li>
 				<button
 					className='w-5 h-5 rounded-md border border-zinc-900 dark:border-pink-400 cursor-pointer'
@@ -42,11 +43,12 @@ const Pagination: FC = () => {
 					<BiChevronDown size={20} className='rotate-90' />
 				</button>
 			</li>
+
 			{pages?.map(page => (
 				<li
 					key={page}
 					className={
-						`w-5 h-5 text-center rounded-md border border-zinc-900 dark:border-pink-400 cursor-pointer select-none` +
+						`relative w-5 h-5 text-center rounded-md border border-zinc-900 dark:border-pink-400 cursor-pointer select-none` +
 						(page === currentPage
 							? '--selected text-orange-400 dark:text-zinc-900 bg-zinc-900 dark:bg-pink-400 select-none'
 							: '')
@@ -55,9 +57,10 @@ const Pagination: FC = () => {
 						handlePageChange(page)
 					}}
 				>
-					{page}
+					<span className='absolute -top-0.5 left-1 font-bold'>{page}</span>
 				</li>
 			))}
+
 			<li>
 				<button
 					className='w-5 h-5 rounded-md border border-zinc-900 dark:border-pink-400 cursor-pointer'

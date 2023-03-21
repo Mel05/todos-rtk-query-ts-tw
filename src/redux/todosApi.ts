@@ -6,7 +6,7 @@ import { ISort } from './../models/ISort'
 export const todosApi = createApi({
 	reducerPath: 'todosApi',
 	tagTypes: ['Todos'],
-
+	// http://localhost:8080 //'https://todos-server-supermadmel.onrender.com'
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'https://todos-server-supermadmel.onrender.com',
 		prepareHeaders: (headers, { getState }) => {

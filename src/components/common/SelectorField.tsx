@@ -31,9 +31,9 @@ const SelectorField: FC = () => {
 	}
 
 	return (
-		<div className='-selectorField relative w-1/3 min-w-[140px] rounded-xl mx-auto mb-6 p-2.5 bg-orange-400 dark:bg-zinc-900'>
+		<div className='-selectorField grow relative w-1/3 min-w-[140px] rounded-xl mx-auto  my-2'>
 			<div
-				className='w-full flex items-center justify-between border-2 rounded-xl px-2 py-1.5  border-zinc-900 dark:border-pink-400   select-none'
+				className='w-full flex items-center justify-between border-2 rounded-xl px-2 py-1.5  border-zinc-900 dark:border-pink-400   select-none bg-orange-400 dark:bg-zinc-900'
 				onClick={() => setIsOpen(!isOpen)}
 			>
 				{label}

@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 import { BsSunFill, BsMoonFill } from 'react-icons/bs'
+import { useAppDispatch } from '../../hooks/redux'
+import { setThemeNow } from '../../redux/themeMode'
 
 const DarkMode = () => {
+	const dispatch = useAppDispatch()
+
 	const [theme, setTheme] = useState(
 		localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
 	)
@@ -32,6 +36,9 @@ const DarkMode = () => {
 	onWindowMatch()
 
 	useEffect(() => {
+		if (theme) {
+			dispatch(setThemeNow(theme))
+		}
 		switch (theme) {
 			case 'dark':
 				element.classList.add('dark')
@@ -57,6 +64,7 @@ const DarkMode = () => {
 						<button
 							onClick={() => {
 								setTheme(opt.text)
+								dispatch(setThemeNow(opt.text))
 							}}
 						>
 							{opt.icon}

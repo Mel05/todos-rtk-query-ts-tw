@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+.src/redux/userApi.ts
+.src/redux/todosApi.ts
 /.pnp
 .pnp.js
 

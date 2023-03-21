@@ -6,6 +6,7 @@ import { selectSort, setCurrentPage } from '../redux/sortSlice'
 import { useGetTodosQuery } from '../redux'
 
 import TodoItem from './TodoItem'
+import TextWhenLoading from './common/TextWhenLoading'
 
 interface TodosListProps {
 	inputRef: React.RefObject<HTMLInputElement>
@@ -28,19 +29,16 @@ const TodosList: FC<TodosListProps> = ({ inputRef }) => {
 		}
 	}, [todos.length])
 
-	if (isLoading)
-		return (
-			<>
-				<h1 className='text-center text-2xl mt-20'> Loading... </h1>
-			</>
-		)
+	if (isLoading) return <TextWhenLoading />
 
 	return (
-		<ul className='-todosList px-5 flex-auto mx-auto'>
-			{todos?.map(todo => (
-				<TodoItem key={todo._id} todo={todo} inputRef={inputRef} />
-			))}
-		</ul>
+		<div className=''>
+			<ul className='-todosList px-5 flex-auto mx-auto'>
+				{todos?.map(todo => (
+					<TodoItem key={todo._id} todo={todo} inputRef={inputRef} />
+				))}
+			</ul>
+		</div>
 	)
 }
 
