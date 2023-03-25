@@ -4,3 +4,5 @@ https://todos-mel.netlify.app/
 
 This is my first full stack project that i was able to deploy
 
+server on Node.js, Express, mongoose
+
