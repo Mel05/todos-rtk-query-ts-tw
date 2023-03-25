@@ -1,4 +1,4 @@
-# React TypeScript React-Router Redux-Tollkit-Query TailWind
+# React, TypeScript, React-Router, Redux-Tollkit-Query, TailWind
 
 https://todos-mel.netlify.app/
 
