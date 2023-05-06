@@ -25,8 +25,8 @@
 	},
 	"scripts": {
 		"start": "set PORT=3011 && react-scripts start",
-		"dev": "concurrently \"npm run server\" \"npm run start\"",
 		"server": "json-server -w server/db.json -p 3010",
+		"dev": "concurrently \"npm run server\" \"npm run start\"",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"

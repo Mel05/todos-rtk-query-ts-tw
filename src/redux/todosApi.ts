@@ -1,14 +1,17 @@
+import { getRequestPath } from '../utils/getRequestPath'
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { ITodo } from './../models/ITodo'
 import { ISort } from './../models/ISort'
 
+const { requestPath } = getRequestPath()
+
 export const todosApi = createApi({
 	reducerPath: 'todosApi',
 	tagTypes: ['Todos'],
-	// http://localhost:8080 //'https://todos-server-supermadmel.onrender.com'
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://todos-server-supermadmel.onrender.com',
+		baseUrl: requestPath,
 		prepareHeaders: (headers, { getState }) => {
 			// const token = (getState() as RootState).auth.token
 			const token = window.localStorage.getItem('token')

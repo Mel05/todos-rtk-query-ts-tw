@@ -1,14 +1,17 @@
+import { getRequestPath } from '../utils/getRequestPath'
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IUser } from './../models/IUser'
+
+const { requestPath } = getRequestPath()
 
 export const userApi = createApi({
 	reducerPath: 'user',
 	tagTypes: ['User'],
 
-	// http://localhost:8080 //'https://todos-server-supermadmel.onrender.com'
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://todos-server-supermadmel.onrender.com',
+		baseUrl: requestPath,
 		prepareHeaders: headers => {
 			const token = window.localStorage.getItem('token')
 
