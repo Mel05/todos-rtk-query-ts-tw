@@ -63,7 +63,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, inputRef }) => {
 									<Check isCompleted={todo.completed} />
 								</span>
 								<span
-									className='w-full flex cursor-pointer pr-3 mr-2 overflow-hidden'
+									className='w-full flex cursor-pointer pr-3 mr-2 leading-none'
 									onClick={() => toggleCompletedTodo(todo)}
 								>
 									<span
