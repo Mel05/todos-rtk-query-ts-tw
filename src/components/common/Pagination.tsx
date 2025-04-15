@@ -33,7 +33,7 @@ const Pagination: FC = () => {
 	if (numOfPages === 1 || numOfPages === 0) return null
 
 	return (
-		<ul className='-pagination w-1/4 h-7 flex justify-between mb-2 mx-auto z-10'>
+		<ul className='-pagination w-1/4 h-7 flex justify-between mb-2 mx-auto md:w-1/4 z-10 '>
 			<li>
 				<button
 					className='w-5 h-5 rounded-md border border-zinc-900 dark:border-pink-400 cursor-pointer'
