@@ -17,7 +17,7 @@ const Main = () => {
 	}, [])
 
 	return (
-		<div className='-main w-full flex flex-col mt-8 mx-auto px-3 z-10 md:max-w-2xl overflow-hidden'>
+		<div className='-main w-full flex flex-col pb-20 mt-8  mb-auto mx-auto px-3  md:max-w-2xl overflow-hidden z-10'>
 			<TextField inputRef={inputRef} />
 
 			<SelectorField />
