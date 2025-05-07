@@ -2,7 +2,7 @@ import { useGetCounterQuery } from '../redux'
 
 const Onrender = () => {
 	const { data, isLoading } = useGetCounterQuery('', {
-		pollingInterval: 145000,
+		pollingInterval: 10000,
 	})
 
 	const counter = data?.counter | 0
